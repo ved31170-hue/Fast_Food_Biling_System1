@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">🍔 Menu</h2>
+
+<div class="row">
+{% for i in items %}
+<div class="col-md-3">
+    <div class="card p-2 mb-3">
+
+        <img src="{{ url_for('static', filename='images/' + i.img) }}" class="img-fluid rounded">
+
+        <h5 class="mt-2 text-dark">{{i.name}}</h5>
+        <p class="text-muted">₹{{i.price}}</p>
+
+        <form action="/add" method="post">
+            <input type="hidden" name="name" value="{{i.name}}">
+            <input type="hidden" name="price" value="{{i.price}}">
+
+            <input type="number" name="qty" value="1" min="1" class="form-control mb-2">
+
+            <button class="btn btn-gold w-100">Add to Cart</button>
+        </form>
+
+    </div>
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}

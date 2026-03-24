@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>🧾 Bill</h2>
+
+<table class="table table-dark">
+<tr>
+<th>Item</th>
+<th>Qty</th>
+<th>Total</th>
+</tr>
+
+{% for i in cart %}
+<tr>
+<td>{{i.name}}</td>
+<td>{{i.qty}}</td>
+<td>₹{{i.total}}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h3>Total: ₹{{cart | sum(attribute='total')}}</h3>
+
+<a href="/download" class="btn btn-primary">⬇ Download PDF</a>
+
+{% endblock %}

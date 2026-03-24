@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>📊 Dashboard</h2>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card p-3 text-center">
+            <h5>Total Orders</h5>
+            <h2>{{total_orders}}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card p-3 text-center">
+            <h5>Total Revenue</h5>
+            <h2>₹{{revenue}}</h2>
+        </div>
+    </div>
+</div>
+
+<canvas id="chart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+new Chart(document.getElementById("chart"), {
+    type: "bar",
+    data: {
+        labels: {{labels | tojson}},
+        datasets: [{
+            label: "Sales",
+            data: {{values | tojson}}
+        }]
+    }
+});
+</script>
+
+{% endblock %}
